@@ -3,22 +3,19 @@ using CustomerManagementSystem.Models;
 
 namespace CustomerManagementSystem
 {
-    public delegate void CustomerEventHandler(Customer customer);
+    public delegate void CustomerAddedHandler(Customer customer);
 
     public class CustomerManager
     {
-        private readonly CustomerCollection<Customer> _customers;
-        public event CustomerEventHandler? CustomerAdded;
+        private readonly CustomerCollection<Customer> customers;
+        public event CustomerAddedHandler? CustomerAdded;
 
-       public event CustomerEventHandler? CustomerUpdated;
-       public event CustomerEventHandler? CustomerDeleted;
-
-        public CustomerManager(CustomerCollection<Customer> customers)
+        public CustomerManager(CustomerCollection<Customer> customerCollection)
         {
-            _customers = customers;
+            customers = customerCollection;
         }
 
-        public bool AddCustomer(Customer customer)
+        public void AddCustomer(Customer customer)
         {
             if (customer == null)
                 throw new ArgumentNullException(nameof(customer));
@@ -26,53 +23,56 @@ namespace CustomerManagementSystem
             if (!customer.Validate())
                 throw new ArgumentException("Customer data is invalid.");
 
-            if (_customers.Any(c => c == customer))
+            if (customers.Any(c => c == customer))
             {
-                return false; // Duplicate customer
+                throw new InvalidOperationException("A customer with this email already exists.");
             }
 
-            _customers.Add(customer);
+            customers.Add(customer);
 
             CustomerAdded?.Invoke(customer);
-
-            return true;
         }
 
         public void UpdateCustomer(int index, string firstName, string lastName, string email)
         {
-            if (index < 0 || index >= _customers.Count)
+            if (index < 0 || index >= customers.Count)
                 throw new IndexOutOfRangeException("Invalid customer index.");
 
-            var customer = _customers[index];
-            customer.UpdateDetails(firstName, lastName, email);
+            var customer = customers[index];
+            customer.FirstName = firstName;
+            customer.LastName = lastName;
+            customer.Email = email;
+            customer.UpdateDetails();
 
             if (!customer.Validate())
                 throw new ArgumentException("Updated customer data is invalid.");
-
-            CustomerUpdated?.Invoke(customer);
         }
 
         public void DeleteCustomer(int index)
         {
-            if (index < 0 || index >= _customers.Count)
+            if (index < 0 || index >= customers.Count)
                 throw new IndexOutOfRangeException("Invalid customer index.");
 
-            var customer = _customers[index];
-            _customers.RemoveAt(index);
+            var customer = customers[index];
+            customer.DeleteRecord();
+            customers.RemoveAt(index);
+        }
 
-            CustomerDeleted?.Invoke(customer);
+        public Customer this[int index]
+        {
+            get { return customers[index]; }
         }
 
         public Customer GetCustomer(int index)
         {
-            return _customers[index];
+            return customers[index];
         }
 
         public List<Customer> GetAllCustomers()
         {
-            return _customers.GetAll();
+            return customers.GetAll();
         }
 
-        public int CustomerCount => _customers.Count;
+        public int CustomerCount => customers.Count;
     }
 }

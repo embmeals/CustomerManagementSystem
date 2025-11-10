@@ -5,19 +5,17 @@ namespace CustomerManagementSystem
 {
     public partial class Form1 : Form
     {
-        private readonly CustomerCollection<Customer> _customerCollection;
-        private readonly CustomerManager _customerManager;
+        private readonly CustomerCollection<Customer> collection;
+        private readonly CustomerManager manager;
 
         public Form1()
         {
             InitializeComponent();
 
-            _customerCollection = new CustomerCollection<Customer>();
-            _customerManager = new CustomerManager(_customerCollection);
+            collection = new CustomerCollection<Customer>();
+            manager = new CustomerManager(collection);
 
-            _customerManager.CustomerAdded += OnCustomerAdded;
-            _customerManager.CustomerUpdated += OnCustomerUpdated;
-            _customerManager.CustomerDeleted += OnCustomerDeleted;
+            manager.CustomerAdded += OnCustomerAdded;
 
             RefreshCustomerList();
         }
@@ -47,19 +45,13 @@ namespace CustomerManagementSystem
                     return;
                 }
 
-                var customer = new Customer(
+                var newCustomer = new Customer(
                     txtFirstName.Text.Trim(),
                     txtLastName.Text.Trim(),
                     txtEmail.Text.Trim()
                 );
 
-                bool added = _customerManager.AddCustomer(customer);
-
-                if (!added)
-                {
-                    ShowStatus("A customer with this email already exists!", false);
-                    return;
-                }
+                manager.AddCustomer(newCustomer);
 
                 ClearInputFields();
 
@@ -95,7 +87,7 @@ namespace CustomerManagementSystem
 
                 int selectedIndex = lvCustomers.SelectedIndices[0];
 
-                _customerManager.UpdateCustomer(
+                manager.UpdateCustomer(
                     selectedIndex,
                     txtFirstName.Text.Trim(),
                     txtLastName.Text.Trim(),
@@ -128,7 +120,7 @@ namespace CustomerManagementSystem
 
                 int selectedIndex = lvCustomers.SelectedIndices[0];
 
-                var customer = _customerManager.GetCustomer(selectedIndex);
+                var customer = manager.GetCustomer(selectedIndex);
 
                 var result = MessageBox.Show(
                     $"Are you sure you want to delete {customer.FullName}?",
@@ -139,7 +131,7 @@ namespace CustomerManagementSystem
 
                 if (result == DialogResult.Yes)
                 {
-                    _customerManager.DeleteCustomer(selectedIndex);
+                    collection.RemoveAt(selectedIndex);
 
                     ClearInputFields();
 
@@ -162,25 +154,15 @@ namespace CustomerManagementSystem
             ShowStatus($"Customer added successfully: {customer.FullName}", true);
         }
 
-        private void OnCustomerUpdated(Customer customer)
-        {
-            ShowStatus($"Customer updated successfully: {customer.FullName}", true);
-        }
-
-        private void OnCustomerDeleted(Customer customer)
-        {
-            ShowStatus($"Customer deleted successfully: {customer.FullName}", true);
-        }
-
         private void RefreshCustomerList()
         {
             lvCustomers.Items.Clear();
 
-            var customers = _customerManager.GetAllCustomers();
+            var customers = manager.GetAllCustomers();
 
             foreach (var customer in customers)
             {
-                var item = new ListViewItem(customer.Id.ToString());
+                var item = new ListViewItem(customer.CustomerID.ToString());
                 item.SubItems.Add(customer.FullName);
                 item.SubItems.Add(customer.Email);
                 lvCustomers.Items.Add(item);
@@ -220,7 +202,7 @@ namespace CustomerManagementSystem
                 if (lvCustomers.SelectedIndices.Count > 0)
                 {
                     int selectedIndex = lvCustomers.SelectedIndices[0];
-                    var customer = _customerManager.GetCustomer(selectedIndex);
+                    var customer = manager[selectedIndex];
 
                     txtFirstName.Text = customer.FirstName;
                     txtLastName.Text = customer.LastName;

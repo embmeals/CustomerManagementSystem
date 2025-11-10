@@ -2,15 +2,8 @@ namespace CustomerManagementSystem
 {
     partial class Form1
     {
-        /// <summary>
-        ///  Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        ///  Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -212,21 +205,21 @@ namespace CustomerManagementSystem
 
         #endregion
 
-        private System.Windows.Forms.Label lblTitle;
-        private System.Windows.Forms.Label lblFirstName;
-        private System.Windows.Forms.TextBox txtFirstName;
-        private System.Windows.Forms.Label lblLastName;
-        private System.Windows.Forms.TextBox txtLastName;
-        private System.Windows.Forms.Label lblEmail;
-        private System.Windows.Forms.TextBox txtEmail;
-        private System.Windows.Forms.Button btnAddCustomer;
-        private System.Windows.Forms.ListView lvCustomers;
-        private System.Windows.Forms.ColumnHeader columnId;
-        private System.Windows.Forms.ColumnHeader columnFullName;
-        private System.Windows.Forms.ColumnHeader columnEmail;
-        private System.Windows.Forms.Label lblStatus;
-        private System.Windows.Forms.Button btnExit;
-        private System.Windows.Forms.Button btnUpdateCustomer;
-        private System.Windows.Forms.Button btnDeleteCustomer;
+        private Label lblTitle;
+        private Label lblFirstName;
+        private TextBox txtFirstName;
+        private Label lblLastName;
+        private TextBox txtLastName;
+        private Label lblEmail;
+        private TextBox txtEmail;
+        private Button btnAddCustomer;
+        private ListView lvCustomers;
+        private ColumnHeader columnId;
+        private ColumnHeader columnFullName;
+        private ColumnHeader columnEmail;
+        private Label lblStatus;
+        private Button btnExit;
+        private Button btnUpdateCustomer;
+        private Button btnDeleteCustomer;
     }
 }

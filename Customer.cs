@@ -7,7 +7,7 @@ namespace CustomerManagementSystem.Models
     {
         private static int _nextId = 1;
 
-        public int Id { get; private set; }
+        public int CustomerID { get; private set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
@@ -15,17 +15,22 @@ namespace CustomerManagementSystem.Models
 
         public Customer(string firstName, string lastName, string email)
         {
-            Id = _nextId++;
+            CustomerID = _nextId++;
             FirstName = firstName;
             LastName = lastName;
             Email = email;
         }
 
-        public void UpdateDetails(string firstName, string lastName, string email)
+        public void UpdateDetails()
         {
-            FirstName = firstName;
-            LastName = lastName;
-            Email = email;
+            // This method can be called to trigger validation or other update logic
+            // The actual property updates happen via property setters
+        }
+
+        public void DeleteRecord()
+        {
+            // This method can be used to mark the record for deletion or perform cleanup
+            // In a real application, this might set a flag or trigger database deletion
         }
 
         public bool Validate()
@@ -38,7 +43,7 @@ namespace CustomerManagementSystem.Models
 
         public string GetInfo()
         {
-            return $"ID: {Id}, Name: {FullName}, Email: {Email}";
+            return $"ID: {CustomerID}, Name: {FullName}, Email: {Email}";
         }
 
         public override string ToString()

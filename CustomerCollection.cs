@@ -1,69 +1,69 @@
 using System.Collections;
+using CustomerManagementSystem.Models;
 
 namespace CustomerManagementSystem.Data
 {
-    public class CustomerCollection<T> : IEnumerable<T>
+    public class CustomerCollection<T> : IEnumerable<T> where T : IManageable
     {
-        private readonly List<T> _items;
+        private readonly List<T> items = new();
 
         public CustomerCollection()
         {
-            _items = new List<T>();
         }
 
-        public int Count => _items.Count;
+        public int Count => items.Count;
 
         public T this[int index]
         {
             get
             {
-                if (index < 0 || index >= _items.Count)
+                if (index < 0 || index >= items.Count)
                     throw new IndexOutOfRangeException($"Index {index} is out of range.");
-                return _items[index];
+                return items[index];
             }
             set
             {
-                if (index < 0 || index >= _items.Count)
+                if (index < 0 || index >= items.Count)
                     throw new IndexOutOfRangeException($"Index {index} is out of range.");
-                _items[index] = value;
+                items[index] = value;
             }
         }
 
         public void Add(T item)
         {
-            _items.Add(item);
+            items.Add(item);
         }
 
         public bool Remove(T item)
         {
-            return _items.Remove(item);
+            return items.Remove(item);
         }
 
         public void RemoveAt(int index)
         {
-            if (index < 0 || index >= _items.Count)
+            if (index < 0 || index >= items.Count)
                 throw new IndexOutOfRangeException($"Index {index} is out of range.");
-            _items.RemoveAt(index);
+            items.RemoveAt(index);
         }
 
         public void Clear()
         {
-            _items.Clear();
+            items.Clear();
         }
 
         public bool Contains(T item)
         {
-            return _items.Contains(item);
+            return items.Contains(item);
         }
 
         public List<T> GetAll()
         {
-            return new List<T>(_items);
+            return new List<T>(items);
         }
 
         public IEnumerator<T> GetEnumerator()
         {
-            return _items.GetEnumerator();
+            return items.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()

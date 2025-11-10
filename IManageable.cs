@@ -1,11 +1,9 @@
-namespace CustomerManagementSystem.Models
+namespace CustomerManagementSystem
 {
-    /// <summary>
-    /// Interface for manageable entities that can be updated and validated
-    /// </summary>
     public interface IManageable
     {
-        void UpdateDetails(string firstName, string lastName, string email);
+        void UpdateDetails();
+        void DeleteRecord();
         bool Validate();
         string GetInfo();
     }
