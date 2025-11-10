@@ -47,7 +47,7 @@ namespace CustomerManagementSystem
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(400, 32);
             this.lblTitle.TabIndex = 0;
-            this.lblTitle.Text = "Customer Management System";
+            lblTitle.Text = "Customer Management System";
             //
             // lblFirstName
             //
