@@ -1,0 +1,14 @@
+C:\Users\Ember\source\repos\CustomerManagementSystem\bin\Debug\net8.0-windows\CustomerManagementSystem.exe
+C:\Users\Ember\source\repos\CustomerManagementSystem\bin\Debug\net8.0-windows\CustomerManagementSystem.deps.json
+C:\Users\Ember\source\repos\CustomerManagementSystem\bin\Debug\net8.0-windows\CustomerManagementSystem.runtimeconfig.json
+C:\Users\Ember\source\repos\CustomerManagementSystem\bin\Debug\net8.0-windows\CustomerManagementSystem.dll
+C:\Users\Ember\source\repos\CustomerManagementSystem\bin\Debug\net8.0-windows\CustomerManagementSystem.pdb
+C:\Users\Ember\source\repos\CustomerManagementSystem\obj\Debug\net8.0-windows\CustomerManagementSystem.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Ember\source\repos\CustomerManagementSystem\obj\Debug\net8.0-windows\CustomerManagementSystem.AssemblyInfoInputs.cache
+C:\Users\Ember\source\repos\CustomerManagementSystem\obj\Debug\net8.0-windows\CustomerManagementSystem.AssemblyInfo.cs
+C:\Users\Ember\source\repos\CustomerManagementSystem\obj\Debug\net8.0-windows\CustomerManagementSystem.csproj.CoreCompileInputs.cache
+C:\Users\Ember\source\repos\CustomerManagementSystem\obj\Debug\net8.0-windows\CustomerManagementSystem.dll
+C:\Users\Ember\source\repos\CustomerManagementSystem\obj\Debug\net8.0-windows\refint\CustomerManagementSystem.dll
+C:\Users\Ember\source\repos\CustomerManagementSystem\obj\Debug\net8.0-windows\CustomerManagementSystem.pdb
+C:\Users\Ember\source\repos\CustomerManagementSystem\obj\Debug\net8.0-windows\CustomerManagementSystem.genruntimeconfig.cache
+C:\Users\Ember\source\repos\CustomerManagementSystem\obj\Debug\net8.0-windows\ref\CustomerManagementSystem.dll
