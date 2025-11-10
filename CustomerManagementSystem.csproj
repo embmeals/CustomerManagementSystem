@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
@@ -9,3 +10,16 @@
     </PropertyGroup>
 
 </Project>
+=======
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net8.0-windows</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <UseWindowsForms>true</UseWindowsForms>
+    </PropertyGroup>
+
+</Project>
+>>>>>>> 951c9e8ce6fb53e87b8fa3c11efbf189d41d40cd
