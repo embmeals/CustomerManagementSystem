@@ -45,11 +45,12 @@ namespace CustomerManagementSystem
                     return;
                 }
 
-                var newCustomer = new Customer(
-                    txtFirstName.Text.Trim(),
-                    txtLastName.Text.Trim(),
-                    txtEmail.Text.Trim()
-                );
+                var newCustomer = new Customer
+                {
+                    FirstName = txtFirstName.Text.Trim(),
+                    LastName = txtLastName.Text.Trim(),
+                    Email = txtEmail.Text.Trim()
+                };
 
                 manager.AddCustomer(newCustomer);
 
@@ -118,12 +119,12 @@ namespace CustomerManagementSystem
                     return;
                 }
 
-                int selectedIndex = lvCustomers.SelectedIndices[0];
+                int index = lvCustomers.SelectedIndices[0];
 
-                var customer = manager.GetCustomer(selectedIndex);
+                var selectedCustomer = manager.GetCustomers()[index];
 
                 var result = MessageBox.Show(
-                    $"Are you sure you want to delete {customer.FullName}?",
+                    $"Are you sure you want to delete {selectedCustomer.FullName}?",
                     "Confirm Deletion",
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Question
@@ -131,7 +132,7 @@ namespace CustomerManagementSystem
 
                 if (result == DialogResult.Yes)
                 {
-                    collection.RemoveAt(selectedIndex);
+                    manager.GetCustomers().RemoveAt(index);
 
                     ClearInputFields();
 
@@ -146,7 +147,7 @@ namespace CustomerManagementSystem
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void OnCustomerAdded(Customer customer)
@@ -158,9 +159,7 @@ namespace CustomerManagementSystem
         {
             lvCustomers.Items.Clear();
 
-            var customers = manager.GetAllCustomers();
-
-            foreach (var customer in customers)
+            foreach (var customer in manager.GetCustomers().GetAll())
             {
                 var item = new ListViewItem(customer.CustomerID.ToString());
                 item.SubItems.Add(customer.FullName);
@@ -168,13 +167,13 @@ namespace CustomerManagementSystem
                 lvCustomers.Items.Add(item);
             }
 
-            if (customers.Count == 0)
+            if (manager.GetCustomers().Count == 0)
             {
                 ShowStatus("No customers in the system.", true);
             }
             else
             {
-                ShowStatus($"Total customers: {customers.Count}", true);
+                ShowStatus($"Total customers: {manager.GetCustomers().Count}", true);
             }
         }
 

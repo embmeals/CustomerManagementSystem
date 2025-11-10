@@ -13,6 +13,14 @@ namespace CustomerManagementSystem.Models
         public string Email { get; set; }
         public string FullName => $"{FirstName} {LastName}";
 
+        public Customer()
+        {
+            CustomerID = _nextId++;
+            FirstName = string.Empty;
+            LastName = string.Empty;
+            Email = string.Empty;
+        }
+
         public Customer(string firstName, string lastName, string email)
         {
             CustomerID = _nextId++;

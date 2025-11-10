@@ -68,6 +68,11 @@ namespace CustomerManagementSystem
             return customers[index];
         }
 
+        public CustomerCollection<Customer> GetCustomers()
+        {
+            return customers;
+        }
+
         public List<Customer> GetAllCustomers()
         {
             return customers.GetAll();
