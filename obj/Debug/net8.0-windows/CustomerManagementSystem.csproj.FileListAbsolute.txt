@@ -12,3 +12,4 @@ C:\Users\Ember\source\repos\CustomerManagementSystem\obj\Debug\net8.0-windows\re
 C:\Users\Ember\source\repos\CustomerManagementSystem\obj\Debug\net8.0-windows\CustomerManagementSystem.pdb
 C:\Users\Ember\source\repos\CustomerManagementSystem\obj\Debug\net8.0-windows\CustomerManagementSystem.genruntimeconfig.cache
 C:\Users\Ember\source\repos\CustomerManagementSystem\obj\Debug\net8.0-windows\ref\CustomerManagementSystem.dll
+C:\Users\Ember\source\repos\CustomerManagementSystem\obj\Debug\net8.0-windows\CustomerManagementSystem.sourcelink.json
